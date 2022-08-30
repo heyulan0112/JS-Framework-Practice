@@ -1,0 +1,9 @@
+v-cloak{
+  display: none;
+}
+
+.box{
+  background-color: black;
+  height: 70px;
+  width: 70px;
+}
