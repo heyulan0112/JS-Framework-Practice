@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import {Task} from '../../Task';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
@@ -10,10 +10,19 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons';
 export class TaskItemComponent implements OnInit {
   @Input() task!: Task;
   faTimes = faTimes;
-
+  @Output() onDeleteTask: EventEmitter<Task> = new EventEmitter();
+  @Output() onToggleReminder: EventEmitter<Task> = new EventEmitter();
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  onDelete(task: any) {
+    // Emit an event to delete this sepcific task to upper level and here is emit to tasks component.
+    this.onDeleteTask.emit(task);
+  }
+
+  onToggle(task: any) {
+    this.onToggleReminder.emit(task);
+  }
 }
